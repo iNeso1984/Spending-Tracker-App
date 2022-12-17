@@ -1,3 +1,6 @@
 body{
     background-color: rgb(112, 112, 112);
 }
+li{
+    list-style:none;
+}

@@ -1,80 +1,53 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import "./App.css";
-import ExpenseItem from "./components/ExpenseItem";
 import NewExpense from "./components/NewExpense/NewExpense";
-import ExpenseFilter from "./components/ExpenseFilter";
+import Expenses from "./components/Expenses";
+
+
+const dummy_expenses = [
+  { id: "1", title: "Mortgage", amount: 1400, date: new Date(2022, 12, 1) },
+  {
+    id: "2",
+    title: "Mobile Service",
+    amount: 110,
+    date: new Date(2022, 12, 1),
+  },
+  {
+    id: "3",
+    title: "Health Insurance",
+    amount: 400,
+    date: new Date(2022, 12, 1),
+  }, 
+  {
+    id: "3",
+    title: "Health Insurance",
+    amount: 400,
+    date: new Date(2023, 12, 1),
+  },
+   {
+    id: "4",
+    title: "Car Insurance",
+    amount: 200,
+    date: new Date(2021, 12, 1),
+  }
+];
 
 function App() {
+  const [expenses, setExpenses] = useState(dummy_expenses);
+  console.log(expenses, "from app.js")
 
-  const [filterYear, setFilterYear]= useState('2022');
-  const filterChangeHandler =selectedYear=>{
-    console.log("expense.js");
-    console.log(selectedYear);
-    setFilterYear(selectedYear);
-
-}
-  const expenses = [
-    { id: "1", title: "Mortgage",
-     amount: 1400, 
-     date: new Date(2022, 12, 1) },
-    {
-      id: "2",
-      title: "Mobile Service",
-      amount: 110,
-      date: new Date(2022, 12, 1),
-    },
-    {
-      id: "3",
-      title: "Health Insurance",
-      amount: 400,
-      date: new Date(2022, 12, 1),
-    },
-    { id: "4", title: "Furniture", amount: 150, date: new Date(2022, 12, 1) },
-    { id: "5", title: "Car", amount: 400, date: new Date(2022, 12, 1) },
-    { id: "6", title: "Wifi", amount: 90, date: new Date(2022, 12, 1) },
-    {
-      id: "7",
-      title: "Electric/Utilities",
-      amount: 350,
-      date: new Date(2022, 12, 1),
-    },
-    { id: "8", 
-    title: "Ballet", amount: 70, date: new Date(2022, 12, 1) },
-    { id: "9", title: "School Loan", amount: 100, date: new Date(2022, 12, 1) },
-    { id: "10", title: "CC", amount: 200, date: new Date(2022, 12, 1) },
-    { id: "11", title: "Other", amount: 200, date: new Date(2022, 12, 1) },
-    {
-      id: "12",
-      title: "Food and Gas",
-      amount: 1600,
-      date: new Date(2022, 12, 1),
-    },
-  ];
-const addExpenseHandler = expense =>{
-  console.log('In App.js')
-  console.log(expense)
-};
+  const addExpenseHandler = (expense) => {
+    setExpenses((prevExpense) => {
+      return [expense, ...prevExpense]; //propper way to update state making sure there is a proper snapshot.
+    });
+  };
 
   return (
     <div className="App">
-    
-    <NewExpense onAddExpense={addExpenseHandler}/>
-    <ExpenseFilter selected={filterYear} onChangeFilter = {filterChangeHandler}/>
-      <ExpenseItem
-        title={expenses[0].title}
-        amount={expenses[0].amount}
-        date={expenses[0].date}
-      />
-      <ExpenseItem
-        title={expenses[1].title}
-        amount={expenses[1].amount}
-        date={expenses[1].date}
-      />
-      <ExpenseItem
-        title={expenses[2].title}
-        amount={expenses[2].amount}
-        date={expenses[2].date}
-      />
+      <NewExpense onAddExpense={addExpenseHandler} />
+
+      <Expenses items={expenses} />
+
     </div>
   );
 }
