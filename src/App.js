@@ -5,31 +5,21 @@ import Expenses from "./components/Expenses";
 
 
 const dummy_expenses = [
-  { id: "1", title: "Mortgage", amount: 1400, date: new Date(2022, 12, 1) },
+  { id: "1", title: "Mortgage", amount: 1400, date: new Date(2022,10,4) },
   {
     id: "2",
     title: "Mobile Service",
     amount: 110,
-    date: new Date(2022, 12, 1),
+    date: new Date(2022, 12, 22),
+    
   },
   {
     id: "3",
     title: "Health Insurance",
     amount: 400,
-    date: new Date(2022, 12, 1),
+    date: new Date(2022, 12, 3),
   }, 
-  {
-    id: "3",
-    title: "Health Insurance",
-    amount: 400,
-    date: new Date(2023, 12, 1),
-  },
-   {
-    id: "4",
-    title: "Car Insurance",
-    amount: 200,
-    date: new Date(2021, 12, 1),
-  }
+
 ];
 
 function App() {

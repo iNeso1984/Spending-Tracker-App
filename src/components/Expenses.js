@@ -4,7 +4,7 @@ import ExpenseItem from "./ExpenseItem";
 import ExpenseFilter from "./ExpenseFilter";
 
 const Expenses = (props) => {
-  const [filterYear, setFilterYear] = useState("2022");
+  const [filterYear, setFilterYear] = useState("2021");
   const filterChangeHandler = (selectedYear) => {
     setFilterYear(selectedYear);
   };
@@ -16,7 +16,7 @@ const Expenses = (props) => {
       />
       {props.items.map((expense) => (
         <ExpenseItem
-          id={expense.id}
+          key={expense.id}
           title={expense.title}
           amount={expense.amount}
           date={expense.date}
